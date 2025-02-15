@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,26 +27,30 @@ export default function RootLayout() {
 
   if (!loaded) return null;
 
-  return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack
-        screenOptions={{
-          headerShown: false, // 모든 화면에서 헤더 숨기기
-        }}
-      >
-        <Stack.Screen name="(tabs)" />
+  const queryClient = new QueryClient();
 
-        <Stack.Screen
-          name="index"
-          options={{ gestureEnabled: false }} // 해당 화면에서만 뒤로 가기 비활성화
-        />
-        <Stack.Screen
-          name="home/index"
-          options={{ gestureEnabled: false }} // 해당 화면에서만 뒤로 가기 비활성화
-        />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack
+          screenOptions={{
+            headerShown: false, // 모든 화면에서 헤더 숨기기
+          }}
+        >
+          <Stack.Screen name="(tabs)" />
+
+          <Stack.Screen
+            name="index"
+            options={{ gestureEnabled: false }} // 해당 화면에서만 뒤로 가기 비활성화
+          />
+          <Stack.Screen
+            name="home/index"
+            options={{ gestureEnabled: false }} // 해당 화면에서만 뒤로 가기 비활성화
+          />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
