@@ -4,10 +4,6 @@ import { useState } from "react";
 import { View, Text } from "react-native";
 
 export default function HomeScreen() {
-  const queryClient = useQueryClient();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-
   const {
     data: todos,
     isLoading,
@@ -18,8 +14,7 @@ export default function HomeScreen() {
     staleTime: 1000 * 60 * 5, // 5분 동안 데이터 유지
   });
 
-  console.log(todos);
-
+  // const queryClient = useQueryClient();
   // const mutation = useMutation({
   //   mutationFn: createUser,
   //   onSuccess: () => {
