@@ -6,7 +6,7 @@ export interface MyTeam {
 export const baseballTeams = [
   {
     name: "롯데 자이언츠",
-    character: require("@/assets/images/character/tigers.png"),
+    character: require("@/assets/images/character/giants.png"),
     key: "giants",
   },
   {
@@ -16,7 +16,7 @@ export const baseballTeams = [
   },
   {
     name: "LG 트윈스",
-    character: require("@/assets/images/character/tigers.png"),
+    character: require("@/assets/images/character/twins.png"),
     key: "twins",
   },
   {
@@ -31,27 +31,27 @@ export const baseballTeams = [
   },
   {
     name: "키움 히어로즈",
-    character: require("@/assets/images/character/bears.png"),
+    character: require("@/assets/images/character/heros.png"),
     key: "heroes",
   },
   {
     name: "한화 이글스",
-    character: require("@/assets/images/character/lions.png"),
+    character: require("@/assets/images/character/eagles.png"),
     key: "eagles",
   },
   {
-    name: "SK 와이번스",
-    character: require("@/assets/images/character/tigers.png"),
-    key: "wyverns",
+    name: "SSG 랜더스",
+    character: require("@/assets/images/character/landers.png"),
+    key: "landers",
   },
   {
     name: "NC 다이노스",
-    character: require("@/assets/images/character/bears.png"),
+    character: require("@/assets/images/character/dinos.png"),
     key: "dinos",
   },
   {
     name: "KT 위즈",
-    character: require("@/assets/images/character/tigers.png"),
+    character: require("@/assets/images/character/wiz.png"),
     key: "wiz",
   },
 ];

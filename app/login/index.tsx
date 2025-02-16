@@ -1,4 +1,5 @@
 import LoginButton from "@/components/ui/button/LoginButton";
+import { Layout } from "@/components/ui/layout/Layout";
 import { Link, useRouter } from "expo-router";
 import { View, Text, StyleSheet } from "react-native";
 
@@ -18,7 +19,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <Layout>
       <Text style={styles.subTitle}>나의 야구 직관 기록 공간</Text>
       <Text style={styles.title}>승요의 일기장</Text>
       <View style={styles.container}>
@@ -44,7 +45,7 @@ export default function LoginScreen() {
       <Text style={styles.link}>
         <Link href="https://naver.com">고객센터</Link>
       </Text>
-    </View>
+    </Layout>
   );
 }
 const styles = StyleSheet.create({
