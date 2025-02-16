@@ -29,12 +29,13 @@ const styles = StyleSheet.create({
   common: {
     paddingVertical: 12,
     width: "90%",
-    borderRadius: 5,
+    borderRadius: 12,
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
     gap: 10,
     alignItems: "center",
+    height: 48,
   },
   logo: {
     width: 35,
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
 const textStyles = StyleSheet.create({
   common: {
     fontSize: 16,
+    lineHeight: 24,
     fontWeight: "bold",
   },
   kakao: {

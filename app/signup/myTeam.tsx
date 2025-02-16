@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     gap: 8,
-    backgroundColor: "yellow",
   },
   container: {
     flexDirection: "row",
