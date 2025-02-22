@@ -1,11 +1,14 @@
 import LoginButton from "@/components/ui/button/LoginButton";
 import { Layout } from "@/components/ui/layout/Layout";
+import { theme } from "@/constants/theme";
 import { Link, useRouter } from "expo-router";
 import { View, Text, StyleSheet } from "react-native";
 
+type LoginType = "kakao" | "google" | "apple";
+
 export default function LoginScreen() {
   const router = useRouter();
-  const onClick = (type: "kakao" | "google" | "apple") => {
+  const onClick = (type: LoginType) => {
     console.log(type);
     if (type === "kakao") {
       router.push("/signup");
@@ -18,6 +21,11 @@ export default function LoginScreen() {
     }
   };
 
+  const lastLogin = "kakao";
+  const checkLastLogin = (type: LoginType) => {
+    return lastLogin === type;
+  };
+
   return (
     <Layout>
       <Text style={styles.subTitle}>나의 야구 직관 기록 공간</Text>
@@ -25,18 +33,21 @@ export default function LoginScreen() {
       <View style={styles.container}>
         <LoginButton
           type="kakao"
+          lastLogin={checkLastLogin("kakao")}
           onPress={() => {
             onClick("kakao");
           }}
         />
         <LoginButton
           type="apple"
+          lastLogin={checkLastLogin("apple")}
           onPress={() => {
             onClick("apple");
           }}
         />
         <LoginButton
           type="google"
+          lastLogin={checkLastLogin("google")}
           onPress={() => {
             onClick("google");
           }}
@@ -61,7 +72,7 @@ const styles = StyleSheet.create({
   },
   link: {
     marginTop: 10,
-    color: "#BABCBE",
+    color: theme.color.gray600,
     textDecorationLine: "underline",
   },
   container: {

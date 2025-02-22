@@ -20,7 +20,7 @@ const color = {
   gray300: "#b2b2b2",
   gray400: "#a3a3a3",
   gray500: "#8c8c8c",
-  gray600: "7f7f7f",
+  gray600: "#7f7f7f",
   gray700: "#636363",
   gray800: "#4d4d4d",
   gray900: "#3b3b3b",
