@@ -1,6 +1,7 @@
 export interface MyTeam {
   name: string;
-  character: string;
+  character: any;
+  key: string;
 }
 
 export const baseballTeams = [

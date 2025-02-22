@@ -1,4 +1,5 @@
 import Button from "@/components/ui/button/Button";
+import SelectTeamButton from "@/components/ui/button/SelectTeamButton";
 import { Layout } from "@/components/ui/layout/Layout";
 import { baseballTeams } from "@/types/team";
 import { useState } from "react";
@@ -15,37 +16,19 @@ export default function SignupMyTeamScreen() {
     <Layout>
       <View style={styles.title_container}>
         <Layout.Title>당신의 최애팀을 선택해주세요.</Layout.Title>
-        <Layout.TextM color="#B3B6B6">한 팀만 선택해주세요.</Layout.TextM>
+        <Layout.SubTitle>한 팀만 선택해주세요.</Layout.SubTitle>
       </View>
       <View style={styles.container}>
         {baseballTeams.map((team, index) => (
-          <TouchableOpacity
-            onPress={() => onClick(team.key)}
+          <SelectTeamButton
             key={team.key}
-            activeOpacity={1}
-            style={[
-              styles.team,
-              index >= Math.floor(baseballTeams.length / 3) * 3
-                ? styles.lastRowItem
-                : {},
-            ]}
-          >
-            {/* 기본 팀 이미지 */}
-            <Image source={team.character} style={styles.teamImage} />
-
-            {/* 선택된 경우 오버레이 이미지 추가 */}
-            {myTeam === team.key && (
-              <Image
-                source={require("@/assets/images/character/selected.png")}
-                style={styles.overlayImage}
-              />
-            )}
-
-            <Text>{team.name}</Text>
-          </TouchableOpacity>
+            onPress={() => onClick(team.key)}
+            team={team}
+            isSelect={myTeam === team.key}
+          />
         ))}
       </View>
-      <Button position="bottom" onPress={() => {}}>
+      <Button position="bottom" disabled={!myTeam} onPress={() => {}}>
         다음으로
       </Button>
     </Layout>
@@ -62,32 +45,12 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   container: {
+    width: 335,
+    margin: "auto",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     marginTop: 20,
-    padding: 20,
-    gap: 20,
-  },
-  team: {
-    alignItems: "center",
-    justifyContent: "center",
-    width: 90,
-    position: "relative",
-  },
-  lastRowItem: {
-    alignSelf: "flex-start", // 마지막 줄 왼쪽 정렬
-  },
-
-  teamImage: {
-    width: 60,
-    height: 60,
-  },
-  overlayImage: {
-    width: 60,
-    height: 60,
-    position: "absolute", // 기존 이미지 위에 배치
-    top: 0,
-    left: 15,
+    marginBottom: 0,
   },
 });

@@ -7,17 +7,11 @@ export const Layout = ({ children }: { children: ReactNode }) => {
 };
 
 Layout.Title = ({ children }: { children: ReactNode }) => {
-  return <Text style={styles.Title}>{children}</Text>;
+  return <Text style={styles.title}>{children}</Text>;
 };
 
-Layout.TextM = ({
-  children,
-  color = theme.color.black,
-}: {
-  children: ReactNode;
-  color?: string;
-}) => {
-  return <Text style={{ ...styles.TextM, color }}>{children}</Text>;
+Layout.SubTitle = ({ children }: { children: ReactNode }) => {
+  return <Text style={{ ...styles.subtitle }}>{children}</Text>;
 };
 
 const styles = StyleSheet.create({
@@ -27,13 +21,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: theme.color.white,
   },
-  Title: {
+  title: {
     fontSize: 22,
     fontWeight: 700,
     lineHeight: 35,
     textAlign: "center",
   },
-  TextM: {
+  subtitle: {
+    color: theme.color.gray300,
     fontSize: 14,
     fontWeight: 500,
     lineHeight: 21,

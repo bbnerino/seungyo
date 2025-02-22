@@ -1,6 +1,6 @@
 const color = {
   // GREEN
-  green: "#02c37d",
+  green: "#02C37D",
   green100: "#b1ecd7",
   green200: "#8be3c3",
   green300: "#55d7a8",
