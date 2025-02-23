@@ -13,10 +13,11 @@ import {
   ImageBackground,
   TextInput,
   Alert,
-  Linking,
 } from "react-native";
 import PhotoPermissionModal from "@/components/ui/modal/PhotoPermissionModal";
 import useHandleImage from "@/hooks/useHandleImage";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function SignupProfileScreen() {
   const router = useRouter();
@@ -25,17 +26,33 @@ export default function SignupProfileScreen() {
 
   const { image, modal, setModal, onPreesImage } = useHandleImage();
 
+  const schema = yup.object().shape({
+    name: yup
+      .string()
+      .required("닉네임을 입력해주세요")
+      .matches(/^[a-zA-Z0-9가-힣]+$/, "특수문자나 공백 없이 입력해주세요.")
+      .max(12, "닉네임은 최대 12자까지 입력할 수 있습니다."),
+  });
+
   const {
     control,
+    setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data: any) => {
     console.log("입력된 데이터:", data);
   };
-  const onError = () => {
+  const onError = (err: any) => {
+    console.log(err);
+
     setButtonEnable(false);
+
+    if (err.name) {
+      Alert.alert(err.name.message);
+      return;
+    }
   };
 
   return (
@@ -70,7 +87,8 @@ export default function SignupProfileScreen() {
         <Controller
           control={control}
           name="name"
-          rules={{ required: "이름을 입력하세요!" }}
+          defaultValue=""
+          rules={{ required: true }}
           render={({ field }) => (
             <View style={{ width: "100%" }}>
               <View style={styles.inputBox}>
@@ -80,17 +98,19 @@ export default function SignupProfileScreen() {
                 >
                   <Text style={styles.inputTitle}>닉네임</Text>
                   <TextInput
+                    {...field}
                     ref={inputRef}
                     maxLength={12}
                     style={styles.input}
-                    value={field.value}
-                    onChangeText={field.onChange}
                     placeholder="12자 이내, 특수문자(공백) 불가"
                     placeholderTextColor={"#8C8C8C"}
                   />
                 </TouchableOpacity>
                 {field.value?.length > 0 && (
-                  <TouchableOpacity style={styles.clearButton}>
+                  <TouchableOpacity
+                    style={styles.clearButton}
+                    onPress={() => setValue("name", "")}
+                  >
                     <Image
                       source={require("@/assets/images/button/delete_icon.png")}
                       // style={styles.del}
@@ -113,14 +133,11 @@ export default function SignupProfileScreen() {
         //   handleSubmit(onSubmit);
         //   // router.push("/signup/profile");
         // }}
-        onPress={handleSubmit(onSubmit)}
+        onPress={handleSubmit(onSubmit, onError)}
       >
         가입 완료
       </Button>
     </Layout>
-    // <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-    //   <Text>프로필 세팅</Text>
-    // </View>
   );
 }
 
