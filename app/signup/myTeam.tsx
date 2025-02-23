@@ -3,7 +3,7 @@ import SelectTeamButton from "@/components/ui/button/SelectTeamButton";
 import { Layout } from "@/components/ui/layout/Layout";
 import { baseballTeams } from "@/types/team";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function SignupMyTeamScreen() {
@@ -16,6 +16,13 @@ export default function SignupMyTeamScreen() {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible2, setModalVisible2] = useState(false);
+
+  useEffect(() => {
+    const checkMyTeam = false;
+    if (checkMyTeam) {
+      router.push("/signup/profile");
+    }
+  }, []);
 
   return (
     <Layout>
@@ -55,7 +62,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "flex-start",
-    marginTop: 20,
+    marginTop: 40,
     marginBottom: 0,
   },
   openButton: {

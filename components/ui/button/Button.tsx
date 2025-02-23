@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   normal: {},
   bottom: {
     position: "absolute",
-    bottom: 20,
+    bottom: 42,
   },
   text: {
     fontSize: 16,

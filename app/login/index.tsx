@@ -11,10 +11,10 @@ export default function LoginScreen() {
   const onClick = (type: LoginType) => () => {
     console.log(type);
     if (type === "kakao") {
-      router.push("/signup");
+      router.push("/signup/myTeam");
     }
     if (type === "google") {
-      router.push("/signup");
+      router.push("/signup/profile");
     }
     if (type === "apple") {
       router.push("/home");

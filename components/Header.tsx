@@ -1,24 +1,28 @@
 import { useNavigation } from "expo-router";
 import React from "react";
-import { Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
 const Header = () => {
   const navigation = useNavigation();
 
   return (
-    <Text
+    <View
       style={{
-        color: "#000",
-        fontSize: 25,
-        fontWeight: "bold",
-        paddingLeft: 20,
-        paddingTop: 40,
+        height: 56,
         backgroundColor: "#ffffff",
+        borderBottomColor: "#ffffff",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
       }}
-      onPress={() => navigation.goBack()}
     >
-      ＜
-    </Text>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Image
+          source={require("../assets/icons/arrow_left.png")}
+          style={{ width: 48, height: 48 }}
+        />
+      </TouchableOpacity>
+    </View>
   );
 };
 
