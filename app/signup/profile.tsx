@@ -43,10 +43,10 @@ export default function SignupProfileScreen() {
       <PhotoPermissionModal modalVisible={modal} setModalVisible={setModal} />
       <View style={styles.title_container}>
         <Layout.Title>프로필을 설정해 주세요!</Layout.Title>
-        <Layout.TextM color="#B3B6B6">
+        <Layout.SubTitle>
           어떤 이름으로 불리고 싶나요?{"\n"}
           사진은 나중에 추가해도 괜찮아요.
-        </Layout.TextM>
+        </Layout.SubTitle>
       </View>
       <View style={styles.container}>
         <TouchableOpacity style={styles.profileWrap} onPress={onPreesImage}>

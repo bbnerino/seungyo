@@ -1,4 +1,4 @@
-import { fetchUsers } from "@/hooks/api/api";
+import { fetchLogin } from "@/api/api";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { View, Text } from "react-native";
@@ -10,7 +10,7 @@ export default function HomeScreen() {
     isError,
   } = useQuery({
     queryKey: ["users"],
-    queryFn: fetchUsers,
+    queryFn: fetchLogin,
     staleTime: 1000 * 60 * 5, // 5분 동안 데이터 유지
   });
 

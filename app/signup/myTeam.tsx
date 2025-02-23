@@ -14,6 +14,9 @@ export default function SignupMyTeamScreen() {
     setMyTeam(team);
   };
 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible2, setModalVisible2] = useState(false);
+
   return (
     <Layout>
       <View style={styles.title_container}>
@@ -54,5 +57,18 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginTop: 20,
     marginBottom: 0,
+  },
+  openButton: {
+    backgroundColor: "#F194FF",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    margin: 10,
+  },
+
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
