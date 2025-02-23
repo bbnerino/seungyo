@@ -7,8 +7,7 @@ export default function SplashScreen() {
   const router = useRouter();
 
   const checkLoginStatus = async () => {
-    const token = await AsyncStorage.getItem("userToken");
-    console.log("📸", token);
+    const token = await AsyncStorage.getItem("access_token");
 
     await new Promise((resolve) => setTimeout(resolve, 3000));
 

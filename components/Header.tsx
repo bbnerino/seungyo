@@ -13,14 +13,9 @@ const Header = () => {
         fontWeight: "bold",
         paddingLeft: 20,
         paddingTop: 40,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#ffffff0",
-        borderBottomColor: "#ffffff0",
+        backgroundColor: "#ffffff",
       }}
-      onPress={() => {
-        navigation.goBack();
-      }}
+      onPress={() => navigation.goBack()}
     >
       ＜
     </Text>

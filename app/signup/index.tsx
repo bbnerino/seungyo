@@ -15,9 +15,10 @@ export default function SignupScreen() {
     const res = true;
 
     if (res) {
-      router.push("/signup/profile");
+      router.push("/signup/myTeam");
+      return;
     }
-    router.push("/signup/myTeam");
+    router.push("/signup/profile");
   };
 
   return (

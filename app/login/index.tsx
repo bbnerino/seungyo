@@ -8,7 +8,7 @@ type LoginType = "kakao" | "google" | "apple";
 
 export default function LoginScreen() {
   const router = useRouter();
-  const onClick = (type: LoginType) => {
+  const onClick = (type: LoginType) => () => {
     console.log(type);
     if (type === "kakao") {
       router.push("/signup");
@@ -34,33 +34,28 @@ export default function LoginScreen() {
         <LoginButton
           type="kakao"
           lastLogin={checkLastLogin("kakao")}
-          onPress={() => {
-            onClick("kakao");
-          }}
+          onPress={onClick("kakao")}
         />
         <LoginButton
           type="apple"
           lastLogin={checkLastLogin("apple")}
-          onPress={() => {
-            onClick("apple");
-          }}
+          onPress={onClick("apple")}
         />
         <LoginButton
           type="google"
           lastLogin={checkLastLogin("google")}
-          onPress={() => {
-            onClick("google");
-          }}
+          onPress={onClick("google")}
         />
+        <Text style={styles.link}>
+          <Link href="https://naver.com">고객센터</Link>
+        </Text>
       </View>
-      <Text style={styles.link}>
-        <Link href="https://naver.com">고객센터</Link>
-      </Text>
     </Layout>
   );
 }
 const styles = StyleSheet.create({
   subTitle: {
+    marginTop: 100,
     fontSize: 16,
     color: "#333",
   },
@@ -70,18 +65,19 @@ const styles = StyleSheet.create({
     color: "#333",
     marginTop: 10,
   },
-  link: {
-    marginTop: 10,
-    color: theme.color.gray600,
-    textDecorationLine: "underline",
-  },
+
   container: {
-    flex: 0.3,
     flexDirection: "column", // 세로 방향으로 배치
     justifyContent: "center", // 자식들을 세로로 중앙 배치
     alignItems: "center", // 자식들을 가로로 중앙 배치
     width: "100%", // 화면 전체 너비
-    // paddingHorizontal: 24,
     gap: 10, // 버튼 간의 간격
+    position: "absolute",
+    bottom: 45,
+  },
+  link: {
+    marginTop: 22,
+    color: theme.color.gray600,
+    textDecorationLine: "underline",
   },
 });

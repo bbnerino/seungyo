@@ -39,27 +39,16 @@ export default function RootLayout() {
         <ThemeProvider
           value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Stack
-            screenOptions={{
-              headerStyle: {
-                backgroundColor: "#fff",
-              },
-              header: () => <Header />,
-              // headerLeft: () => <Text onPress={() => {}}>＜</Text>,
-            }}
-          >
-            <Stack.Screen
+          <Stack screenOptions={{ header: () => <Header /> }}>
+            {/* <Stack.Screen
               name="index"
-              // options={{ gestureEnabled: false }} // 해당 화면에서만 뒤로 가기 비활성화
               options={{
                 headerShown: true, // 헤더 표시
                 title: "프로필", // 헤더 타이틀 설정
               }}
-            />
-            <Stack.Screen
-              name="home/index"
-              options={{ gestureEnabled: false }} // 해당 화면에서만 뒤로 가기 비활성화
-            />
+            /> */}
+            <Stack.Screen name="login/index" options={{ headerShown: false }} />
+            <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen
               name="signup/profile"
               options={{
