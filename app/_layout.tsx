@@ -9,6 +9,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
+import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -30,27 +31,31 @@ export default function RootLayout() {
   const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack
-          screenOptions={{
-            headerShown: false, // 모든 화면에서 헤더 숨기기
-          }}
+    <ActionSheetProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Stack.Screen name="(tabs)" />
+          <Stack
+            screenOptions={{
+              headerShown: false, // 모든 화면에서 헤더 숨기기
+            }}
+          >
+            <Stack.Screen name="(tabs)" />
 
-          <Stack.Screen
-            name="index"
-            options={{ gestureEnabled: false }} // 해당 화면에서만 뒤로 가기 비활성화
-          />
-          <Stack.Screen
-            name="home/index"
-            options={{ gestureEnabled: false }} // 해당 화면에서만 뒤로 가기 비활성화
-          />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
-    </QueryClientProvider>
+            <Stack.Screen
+              name="index"
+              options={{ gestureEnabled: false }} // 해당 화면에서만 뒤로 가기 비활성화
+            />
+            <Stack.Screen
+              name="home/index"
+              options={{ gestureEnabled: false }} // 해당 화면에서만 뒤로 가기 비활성화
+            />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </QueryClientProvider>
+    </ActionSheetProvider>
   );
 }
