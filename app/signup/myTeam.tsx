@@ -2,10 +2,12 @@ import Button from "@/components/ui/button/Button";
 import SelectTeamButton from "@/components/ui/button/SelectTeamButton";
 import { Layout } from "@/components/ui/layout/Layout";
 import { baseballTeams } from "@/types/team";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function SignupMyTeamScreen() {
+  const router = useRouter();
   const [myTeam, setMyTeam] = useState<string>();
 
   const onClick = (team: string) => {
@@ -28,7 +30,7 @@ export default function SignupMyTeamScreen() {
           />
         ))}
       </View>
-      <Button position="bottom" disabled={!myTeam} onPress={() => {}}>
+      <Button position="bottom" onPress={() => router.push("/signup/profile")}>
         다음으로
       </Button>
     </Layout>

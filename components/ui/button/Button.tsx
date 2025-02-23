@@ -1,25 +1,30 @@
 import { theme } from "@/constants/theme";
-import React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import React, { ReactNode } from "react";
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  TouchableOpacityProps,
+} from "react-native";
+
+type ButtonProps = TouchableOpacityProps & {
+  onPress: () => void;
+  children: ReactNode;
+  position?: "normal" | "bottom";
+  disabled?: boolean;
+};
 
 const Button = ({
   onPress,
   children,
   position = "normal",
-  disabled,
-}: {
-  onPress: () => void;
-  children: string;
-  position?: "normal" | "bottom";
-  disabled?: boolean;
-}) => {
+  disabled = false,
+  ...rest
+}: ButtonProps) => {
   return (
     <TouchableOpacity
-      style={[
-        styles.button,
-        styles[position],
-        disabled && { backgroundColor: theme.color.green200 },
-      ]}
+      {...rest}
+      style={[styles.button, styles[position], rest.style]}
       onPress={onPress}
       disabled={disabled}
     >
